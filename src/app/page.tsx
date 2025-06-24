@@ -1,13 +1,11 @@
-import { SettingTabs } from "@/components/SettingTabs/SettingTabs";
-import { InputControl, InputPrefix, InputRoot } from "@/components/Input/Input";
-import { Mail } from "lucide-react";
-import {
-  FileInputImageControl,
-  FileInputImagePreview,
-  FileInputList,
-  FileInputRoot,
-  FileInputTrigger,
-} from "@/components/Form/FileInput/FileInput";
+import { SettingTabs } from "@/components/SettingTabs";
+import { Bold, Italic, Link, List, ListOrdered, Mail } from "lucide-react";
+import { SelectInput } from "@/components/Form/SelectInput";
+import { SelectItem } from "@/components/Form/SelectInput/SelectItem";
+import { TextArea } from "@/components/Form/TextArea";
+import { Input } from "@/components/Input";
+import { FileInput } from "@/components/Form/FileInput";
+import { Button } from "@/components/Button";
 
 export default function Home() {
   return (
@@ -25,19 +23,12 @@ export default function Home() {
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <button
-              type="button"
-              className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-semibold shadow-sm hover:bg-zinc-50"
-            >
+            <Button type="button" variant="outline">
               Cancel
-            </button>
-            <button
-              type="submit"
-              form="settings"
-              className="rounded-lg bg-violet-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-700"
-            >
+            </Button>
+            <Button type="submit" form="settings" variant="primary">
               Save
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -53,13 +44,13 @@ export default function Home() {
               Name
             </label>
             <div className="grid grid-cols-2 gap-6">
-              <InputRoot>
-                <InputControl id="fistName" defaultValue="Lucas" />
-              </InputRoot>
+              <Input.Root>
+                <Input.Control id="fistName" defaultValue="Lucas" />
+              </Input.Root>
 
-              <InputRoot>
-                <InputControl defaultValue="Lan" />
-              </InputRoot>
+              <Input.Root>
+                <Input.Control defaultValue="Lan" />
+              </Input.Root>
             </div>
           </div>
 
@@ -71,16 +62,16 @@ export default function Home() {
               Email
             </label>
 
-            <InputRoot>
-              <InputPrefix>
+            <Input.Root>
+              <Input.Prefix>
                 <Mail className="h-5 w-5 text-zinc-500" />
-              </InputPrefix>
-              <InputControl
+              </Input.Prefix>
+              <Input.Control
                 id="email"
                 type="email"
                 defaultValue="Lucas@hotmail.com"
               />
-            </InputRoot>
+            </Input.Root>
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
@@ -94,11 +85,11 @@ export default function Home() {
               </span>
             </label>
 
-            <FileInputRoot className="flex items-start gap-5">
-              <FileInputImagePreview />
-              <FileInputTrigger />
-              <FileInputImageControl />
-            </FileInputRoot>
+            <FileInput.Root className="flex items-start gap-5">
+              <FileInput.ImagePreview />
+              <FileInput.Trigger />
+              <FileInput.ImageControl />
+            </FileInput.Root>
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
@@ -106,9 +97,9 @@ export default function Home() {
               Role
             </label>
 
-            <InputRoot>
-              <InputControl id="role" type="text" defaultValue="Developer" />
-            </InputRoot>
+            <Input.Root>
+              <Input.Control id="role" type="text" defaultValue="Developer" />
+            </Input.Root>
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
@@ -118,7 +109,10 @@ export default function Home() {
             >
               Country
             </label>
-            <div></div>
+            <SelectInput placeholder="Select a country...">
+              <SelectItem text="Brazil" value="br" />
+              <SelectItem text="United States" value="us" />
+            </SelectInput>
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
@@ -128,7 +122,13 @@ export default function Home() {
             >
               Timezone
             </label>
-            <div></div>
+            <SelectInput placeholder="Select a timezone...">
+              <SelectItem
+                text="Pacific Standard Time (PST) UTC-08:00"
+                value="utc-8"
+              />
+              <SelectItem text="America São Paulo UTC-03:00" value="utc-3" />
+            </SelectInput>
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
@@ -139,7 +139,47 @@ export default function Home() {
               </span>
             </label>
 
-            <div></div>
+            <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <SelectInput placeholder="" defaultValue="normal">
+                  <SelectItem
+                    text="Normal text"
+                    value="normal"
+                    defaultChecked
+                  />
+                  <SelectItem text="Markdowm" value="md" />
+                </SelectInput>
+
+                <div className="flex items-center gap-1">
+                  <Button type="button" variant="ghost">
+                    <Bold className="h-4 w-4 text-zinc-500" strokeWidth={3} />
+                  </Button>
+
+                  <Button type="button" variant="ghost">
+                    <Italic className="h-4 w-4 text-zinc-500" strokeWidth={3} />
+                  </Button>
+
+                  <Button type="button" variant="ghost">
+                    <Link className="h-4 w-4 text-zinc-500" strokeWidth={3} />
+                  </Button>
+
+                  <Button type="button" variant="ghost">
+                    <List className="h-4 w-4 text-zinc-500" strokeWidth={3} />
+                  </Button>
+
+                  <Button type="button" variant="ghost">
+                    <ListOrdered
+                      className="h-4 w-4 text-zinc-500"
+                      strokeWidth={3}
+                    />
+                  </Button>
+                </div>
+              </div>
+              <TextArea
+                id="bio"
+                defaultValue="I'm a Product Designer based in Melbourne, Australia. I specialise in UX/UI design, brand strategy, and Webflow development."
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
@@ -153,26 +193,20 @@ export default function Home() {
               </span>
             </label>
 
-            <FileInputRoot>
-              <FileInputTrigger />
-              <FileInputList />
-              <FileInputImageControl multiple />
-            </FileInputRoot>
+            <FileInput.Root>
+              <FileInput.Trigger />
+              <FileInput.List />
+              <FileInput.ImageControl multiple />
+            </FileInput.Root>
           </div>
 
           <div className="flex items-center justify-end gap-2 pt-5">
-            <button
-              type="button"
-              className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-semibold shadow-sm hover:bg-zinc-50"
-            >
+            <Button type="button" variant="outline">
               Cancel
-            </button>
-            <button
-              type="submit"
-              className="rounded-lg bg-violet-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-700"
-            >
+            </Button>
+            <Button type="submit" form="settings" variant="primary">
               Save
-            </button>
+            </Button>
           </div>
         </form>
       </div>
