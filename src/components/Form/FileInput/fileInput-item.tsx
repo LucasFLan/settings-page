@@ -49,15 +49,15 @@ export const FileInputItem = ({ name, size, state }: FileInputItemProps) => {
       {state === "error" ? (
         <div className="flex flex-1 flex-col items-start gap-1">
           <div className="flex flex-col">
-            <span className="text-error-700 text-sm font-medium">
+            <span className="text-sm font-medium text-error-700">
               Upload failed, please try again.
             </span>
-            <span className="text-error-600 text-sm">{name}</span>
+            <span className="text-sm text-error-600">{name}</span>
           </div>
 
           <button
             type="button"
-            className="text-error-700 hover:text-error-900 text-sm font-semibold"
+            className="text-sm font-semibold text-error-700 hover:text-error-900"
           >
             Try again
           </button>
