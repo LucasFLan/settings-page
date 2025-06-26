@@ -15,7 +15,7 @@ export const FileInputList = () => {
           key={file.name}
           name={file.name}
           size={file.size}
-          state="progress"
+          state="complete"
         />
       ))}
     </div>

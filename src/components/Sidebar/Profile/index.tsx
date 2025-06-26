@@ -12,10 +12,10 @@ export const Profile = () => {
         height={40}
       />
       <div className="flex flex-1 flex-col truncate">
-        <span className="truncate text-sm font-semibold text-zinc-700">
+        <span className="truncate text-sm font-semibold text-zinc-700 dark:text-zinc-100">
           Lucas F Lan
         </span>
-        <span className="truncate text-sm text-zinc-500">
+        <span className="truncate text-sm text-zinc-500 dark:text-zinc-400">
           Lucas@hotmailasdasdasdasdasdadasdas.com
         </span>
       </div>
